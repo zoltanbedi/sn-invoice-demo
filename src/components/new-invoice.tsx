@@ -14,6 +14,8 @@ const validationSchema = object().shape({
   Description: string().required()
 });
 
+export const parentPath = "/Root/Sites/Default_Site/Zoltan workspace"
+
 export default function NewInvoice({
   open,
   handleCancel
@@ -33,7 +35,7 @@ export default function NewInvoice({
           repository={repo}
           handleCancel={handleCancel}
           contentTypeName="Invoice"
-          path="Root/Sites/Default_Site/Zoltán-s workspace"
+          path={parentPath}
           onSubmit={async content => {
             try {
               await validationSchema.validate(content, {
@@ -43,7 +45,7 @@ export default function NewInvoice({
               try {
                 const created = await repo.post({
                   contentType: "Invoice",
-                  parentPath: "Root/Sites/Default_Site/Zoltán-s workspace",
+                  parentPath,
                   content
                 });
                 handleCancel();

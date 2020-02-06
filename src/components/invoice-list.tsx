@@ -4,6 +4,7 @@ import { ContentList } from "@sensenet/list-controls-react";
 import React, { useEffect, useState, useCallback } from "react";
 import { FullScreenLoader } from "./full-screen-loader";
 import { Invoice } from "../types";
+import { parentPath } from './new-invoice';
 
 export default function InvoiceList() {
   const repository = useRepository();
@@ -14,7 +15,7 @@ export default function InvoiceList() {
     async function() {
       try {
         const result = await repository.loadCollection<Invoice>({
-          path: "Root/Sites/Default_Site/Zoltán-s workspace",
+          path: parentPath,
           oDataOptions: {
             select: ["DisplayName", "Id", "Paid"],
             query: "+TypeIs: Invoice",
