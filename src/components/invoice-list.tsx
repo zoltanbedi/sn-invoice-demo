@@ -47,8 +47,8 @@ export default function InvoiceList() {
   ]);
 
   const payClick = async (content: any) => {
-    await repository.patch({
-      content: { ...content, Paid: !content.Paid },
+    await repository.patch<Invoice>({
+      content: { Paid: !content.Paid },
       idOrPath: content.Id
     });
   };
